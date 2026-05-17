@@ -26,6 +26,7 @@ formElement.onsubmit = (event: Event) => {
     loadFileFrom,
     updateProgressStep,
     updateProgressLength,
+    console,
   ).catch((error) => {
     enableButton();
 
@@ -70,6 +71,11 @@ function updateProgressLength(maxValue: number) {
   (progressBarElement as Element).setAttribute('max', maxValue.toString());
 }
 
-function updateProgressStep(currentValue: number) {
-  (progressBarElement as Element).setAttribute('value', currentValue.toString());
+function updateProgressStep() {
+  let currentValue = 0;
+
+  return () => {
+    currentValue++;
+    (progressBarElement as Element).setAttribute('value', currentValue.toString());
+  }
 }
