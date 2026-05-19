@@ -24,7 +24,7 @@ formElement.onsubmit = (event: Event) => {
     url,
     requestTextContent(url),
     loadFileFrom,
-    updateProgressStep,
+    updateProgressStep(),
     updateProgressLength,
     console,
   ).catch((error) => {
