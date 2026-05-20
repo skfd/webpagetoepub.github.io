@@ -6,6 +6,7 @@ const REVOKE_URL_TIME_MILISECONDS = 1000 * 60 * 30;
 const formElement = document.getElementById('form');
 const downloadButton = document.querySelector('button[type=submit]') as HTMLInputElement;
 let progressBarElement: Element = null;
+let output: Element = null;
 
 formElement.onsubmit = (event: Event) => {
   event.preventDefault();
@@ -20,7 +21,10 @@ formElement.onsubmit = (event: Event) => {
     main.appendChild(progressBarElement as Element);
   }
 
-  const output = document.createElement('output');
+  if (output !== null) {
+    output.remove();
+  }
+  output = document.createElement('output');
   main.appendChild(output);
 
   convertPageToEPUB(
