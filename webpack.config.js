@@ -71,7 +71,7 @@ module.exports = {
     }),
     new PurgeCSSPlugin({
       paths: glob.sync('src/**/*.html', { nodir: true }),
-      safelist: ['progress'],
+      safelist: ['progress', 'output', 'info', 'error'],
     }),
 
     new HtmlWebpackPlugin({

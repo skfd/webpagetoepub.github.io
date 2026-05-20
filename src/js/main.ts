@@ -14,11 +14,14 @@ formElement.onsubmit = (event: Event) => {
   const inputUrlElement = document.getElementById('url') as HTMLInputElement;
   const url = inputUrlElement.value;
 
+  const main = document.querySelector('main') as Element;
   if (progressBarElement === null) {
-    const main = document.querySelector('main') as Element;
     progressBarElement = document.createElement('progress');
     main.appendChild(progressBarElement as Element);
   }
+
+  const output = document.createElement('output');
+  main.appendChild(output);
 
   convertPageToEPUB(
     url,
@@ -26,7 +29,16 @@ formElement.onsubmit = (event: Event) => {
     loadFileFrom,
     updateProgressStep(),
     updateProgressLength,
-    console,
+    {
+      log: (message: string) => {
+        console.log(message);
+        logMessage(output, message, 'info');
+      },
+      error: (message: string) => {
+        console.error(message);
+        logMessage(output, message, 'error');
+      },
+    },
   ).catch((error) => {
     enableButton();
 
@@ -37,6 +49,14 @@ formElement.onsubmit = (event: Event) => {
 
   return false;
 };
+
+function logMessage(output: Element, message: string, type: 'info' | 'error') {
+  const span = document.createElement('p');
+  span.setAttribute('class', type);
+  span.appendChild(document.createTextNode(message));
+
+  output.appendChild(span);
+}
 
 function downloadEPUB({title, epub}: {title: string, epub: Blob}) {
   const basename = slug(title);

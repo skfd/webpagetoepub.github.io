@@ -14,3 +14,23 @@ progress {
 progress[value] {
   display: block;
 }
+
+output {
+  display: block;
+  background: black;
+  height: 30rem;
+  white-space: pre;
+  overflow: scroll;
+}
+
+output p {
+  margin-bottom: 0.25rem;
+}
+
+output p.info {
+  color: white;
+}
+
+output p.error {
+  color: red;
+}
