@@ -1,11 +1,10 @@
 import directClient from './direct';
 import mangaraikuClient from './proxy_mangaraiku';
-import codetabsClient from './proxy_codetabs';
 import alloriginsClient from './proxy_allorigins';
 import Client from './client';
 
 
-const PROXY_CLIENTS = [mangaraikuClient, codetabsClient, alloriginsClient];
+const PROXY_CLIENTS = [mangaraikuClient, alloriginsClient];
 
 export function requestTextContent(url: string) {
   return request(client => client.requestTextContent(url));
