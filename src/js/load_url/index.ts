@@ -1,10 +1,11 @@
 import directClient from './direct';
 import mangaraikuClient from './proxy_mangaraiku';
 import alloriginsClient from './proxy_allorigins';
+import webpageToEpubClient from './proxy_webpagetoepub';
 import Client from './client';
 
 
-const PROXY_CLIENTS = [mangaraikuClient, alloriginsClient];
+const PROXY_CLIENTS = [mangaraikuClient, alloriginsClient, webpageToEpubClient];
 
 export function requestTextContent(url: string) {
   return request(client => client.requestTextContent(url));
