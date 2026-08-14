@@ -3,7 +3,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
-const WorkboxPlugin = require('workbox-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const { PurgeCSSPlugin } = require('purgecss-webpack-plugin');
 const glob = require('glob');
@@ -119,22 +118,6 @@ module.exports = {
         collapseWhitespace: true,
         removeComments: true,
       },
-    }),
-
-    new WorkboxPlugin.GenerateSW({
-      exclude: [
-        'BingSiteAuth.xml',
-        'browserconfig.xml',
-        /^google[0-9a-f]*.html/,
-        'robots.txt',
-        'sitemap.xml',
-      ],
-      swDest: 'ws.js',
-      ignoreURLParametersMatching: [
-        /^utm_/,
-        /^fbclid$/,
-      ],
-      sourcemap: false,
     }),
   ],
 };
