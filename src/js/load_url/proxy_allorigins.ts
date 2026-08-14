@@ -31,7 +31,7 @@ class AllOriginsClient implements Client {
 
     return fetchWithTimeout(newUrl).then(response => response.json()).then((json: AllOriginsResponse) => {
       const http_code = json.status.http_code;
-      if ((http_code < 200) && (http_code > 299)) {
+      if ((http_code < 200) || (http_code > 299)) {
         throw new CantLoadFileError(url);
       }
 
