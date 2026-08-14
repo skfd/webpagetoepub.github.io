@@ -3,10 +3,46 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
-const WorkboxPlugin = require('workbox-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const { PurgeCSSPlugin } = require('purgecss-webpack-plugin');
 const glob = require('glob');
+const SITE_URL = 'https://webpagetoepub.github.io/';
+
+// Last modification date: the build date (YYYY-MM-DD).
+function lastModified() {
+  return new Date().toISOString().slice(0, 10);
+}
+
+// Emits dist/sitemap.xml at build time. The site is single-page, so the
+// sitemap holds one URL; add more <url> entries here if pages are added.
+class SitemapPlugin {
+  apply(compiler) {
+    const { RawSource } = compiler.webpack.sources;
+    compiler.hooks.thisCompilation.tap('SitemapPlugin', (compilation) => {
+      compilation.hooks.processAssets.tap(
+        {
+          name: 'SitemapPlugin',
+          stage: compiler.webpack.Compilation.PROCESS_ASSETS_STAGE_ADDITIONAL,
+        },
+        () => {
+          const xml = [
+            '<?xml version="1.0" encoding="UTF-8"?>',
+            '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
+            '  <url>',
+            `    <loc>${SITE_URL}</loc>`,
+            `    <lastmod>${lastModified()}</lastmod>`,
+            '    <changefreq>monthly</changefreq>',
+            '    <priority>1.0</priority>',
+            '  </url>',
+            '</urlset>',
+            '',
+          ].join('\n');
+          compilation.emitAsset('sitemap.xml', new RawSource(xml));
+        }
+      );
+    });
+  }
+}
 
 module.exports = {
   mode: 'production',
@@ -66,6 +102,8 @@ module.exports = {
       ],
     }),
 
+    new SitemapPlugin(),
+
     new MiniCssExtractPlugin({
       filename: 'css/style.[contenthash].css',
     }),
@@ -80,22 +118,6 @@ module.exports = {
         collapseWhitespace: true,
         removeComments: true,
       },
-    }),
-
-    new WorkboxPlugin.GenerateSW({
-      exclude: [
-        'BingSiteAuth.xml',
-        'browserconfig.xml',
-        /^google[0-9a-f]*.html/,
-        'robots.txt',
-        'sitemap.xml',
-      ],
-      swDest: 'ws.js',
-      ignoreURLParametersMatching: [
-        /^utm_/,
-        /^fbclid$/,
-      ],
-      sourcemap: false,
     }),
   ],
 };
