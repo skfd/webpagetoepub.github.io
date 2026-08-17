@@ -31,6 +31,11 @@
         "description": "Easily convert any webpage to an EPUB file with our free online tool. Just paste the URL and download your EPUB for offline reading on any device.",
         "version": "1.0.0",
         "url": "https://webpagetoepub.github.io/",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
         "creator": {
           "@type": "Person",
           "name": "Carlson Santana Cruz",
@@ -38,6 +43,79 @@
         },
         "license": "https://opensource.org/licenses/MIT",
         "keywords": "HTML to EPUB, Page to EPUB, EPUB"
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "HowTo",
+        "name": "How to convert a webpage to EPUB",
+        "description": "Turn any public webpage into an EPUB file for offline reading in a few steps.",
+        "step": [
+          {
+            "@type": "HowToStep",
+            "name": "Paste the page URL",
+            "text": "Copy the address of the webpage you want to read offline and paste it into the URL field."
+          },
+          {
+            "@type": "HowToStep",
+            "name": "Start the conversion",
+            "text": "Click the download button. The tool fetches the page, removing forms, videos, audios, frames, scripts and styles to improve readability."
+          },
+          {
+            "@type": "HowToStep",
+            "name": "Download the EPUB",
+            "text": "When the conversion finishes, download the generated EPUB file and open it in your favorite e-reader."
+          }
+        ]
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Is Web page to EPUB free?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. The online converter and the browser extensions are completely free, with no account and no usage limits. Some websites may block being downloaded through public proxies, so a few pages might not convert online."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is my data sent to a server?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "The online converter first tries to download the page directly from your browser. When that is not possible, it sends the page address to a third-party proxy that downloads the content for you. We cannot guarantee that these proxies do not store information about the requests. If you do not want to send any information to third parties, install the browser extension: it turns the page you are reading into an EPUB entirely on your device, with no proxy involved."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Which devices and readers can open the EPUB?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "EPUB is a widely supported format. You can open the generated files on Kindle, Kobo, Apple Books, Google Play Books, PocketBook, Calibre and most other e-readers, tablets and phones."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Why are some elements removed from the page?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Forms, videos, audios, frames, scripts and styles are removed so the result is clean, lightweight and comfortable to read on e-readers."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What is the difference between the website and the browser extension?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "The website downloads the page for you, using a third-party proxy when a direct download is not possible. The browser extension converts the page you are currently viewing directly on your device, so it works with pages behind a login and never shares the page with a proxy."
+            }
+          }
+        ]
       }
     </script>
   </head>
@@ -69,33 +147,182 @@
           </form>
         </main>
       </div>
-      <footer>
-        <h2 class="center">Browser extensions</h2>
-        <p class="center">
-          Works entirely on your device. The page you are reading is turned into
-          an EPUB file by the extension itself, with no server involved.
-        </p>
-        <div class="center store-badges">
-          <a
-            href="https://chromewebstore.google.com/detail/kffcfgcpknijgfoecbefglmemkpkgokg"
-            rel="noopener" target="_blank">
-            <img
-              src="/img/chrome-web-store-badge.png"
-              alt="Available in the Chrome Web Store"
-              width="206"
-              height="58" />
-          </a>
-          <a
-            href="https://addons.mozilla.org/firefox/addon/webpage-to-epub/"
-            rel="noopener" target="_blank">
-            <img
-              src="/img/firefox-add-ons-badge.png"
-              alt="Get the add-on for Firefox"
-              width="172"
-              height="60" />
-          </a>
+
+      <div class="row">
+        <section class="column column-80 column-offset-10 extensions">
+          <h2 class="center">Browser extensions</h2>
+          <p class="center">
+            Prefer full privacy? Use the browser extension &mdash; it converts
+            the page you are reading <strong>entirely on your device</strong>,
+            with no proxy and no server involved.
+          </p>
+          <div class="center store-badges">
+            <a
+              href="https://chromewebstore.google.com/detail/kffcfgcpknijgfoecbefglmemkpkgokg"
+              rel="noopener" target="_blank">
+              <img
+                src="/img/chrome-web-store-badge.png"
+                alt="Available in the Chrome Web Store"
+                width="206"
+                height="58" />
+            </a>
+            <a
+              href="https://addons.mozilla.org/firefox/addon/webpage-to-epub/"
+              rel="noopener" target="_blank">
+              <img
+                src="/img/firefox-add-ons-badge.png"
+                alt="Get the add-on for Firefox"
+                width="172"
+                height="60" />
+            </a>
+          </div>
+        </section>
+      </div>
+
+      <div class="row">
+        <div class="column column-80 column-offset-10">
+          <section>
+            <h2>What is Web page to EPUB?</h2>
+            <p>
+              Web page to EPUB is a free tool that converts any public webpage
+              into an EPUB file, so you can read articles, blog posts and
+              documentation offline on your favorite e-reader. Paste a URL and
+              download a clean, readable EPUB in seconds &mdash; no account and
+              no installation required.
+            </p>
+            <p>
+              During the conversion, distracting elements such as forms, videos,
+              audios, frames, scripts and styles are removed, keeping the text
+              and images that matter for a comfortable reading experience.
+            </p>
+          </section>
+
+          <section>
+            <h2>How it works and your privacy</h2>
+            <p>
+              When you submit a URL, the tool first tries to download the page
+              <strong>directly from your browser</strong>. Many websites block
+              this kind of direct request, so when the direct download fails the
+              tool falls back to a <strong>third-party proxy</strong> that
+              downloads the page content on your behalf and returns it to your
+              browser.
+            </p>
+            <p>
+              This means that, when a proxy is used, the address of the page you
+              want to convert is sent to a server operated by a third party. We
+              cannot guarantee that these proxies do not keep information about
+              the requests they receive.
+            </p>
+            <p>
+              <strong>
+                If you do not want to send any information to third parties,
+                install the browser extension.
+              </strong>
+              The extension turns the page you are currently reading into an
+              EPUB <strong>entirely on your device</strong>, without using any
+              proxy and without sending the page anywhere.
+            </p>
+          </section>
+
+          <section>
+            <h2>Proxies we currently use</h2>
+            <p>
+              The online converter is free to use. When a direct download is not
+              possible, it tries the following proxies (in a random order) until
+              one of them is able to fetch the page. Some websites block being
+              downloaded through public proxies, so a few pages may fail to
+              convert online &mdash; in that case, the browser extension is the
+              recommended alternative.
+            </p>
+            <ul>
+              <li>
+                <strong>AllOrigins</strong> &mdash; a public open-source CORS
+                proxy.
+                <a href="https://allorigins.win/" rel="noopener nofollow" target="_blank">
+                  allorigins.win
+                </a>
+              </li>
+              <li>
+                <strong>Web page to EPUB proxy</strong> &mdash; a proxy hosted by
+                this project to improve the chance of a successful download.
+              </li>
+            </ul>
+          </section>
+
+          <section>
+            <h2>Features</h2>
+            <ul>
+              <li>Free and unlimited, with no account required.</li>
+              <li>Runs in your browser &mdash; nothing to install to get started.</li>
+              <li>Cleans up clutter for a comfortable reading experience.</li>
+              <li>Keeps the article text and images.</li>
+              <li>Works on any device with a modern web browser.</li>
+              <li>
+                Open source under the MIT license.
+                <a href="https://github.com/webpagetoepub/webpagetoepub.github.io" rel="noopener" target="_blank">
+                  View the source code on GitHub
+                </a>.
+              </li>
+            </ul>
+          </section>
+
+          <section>
+            <h2>Supported e-readers and devices</h2>
+            <p>
+              EPUB is one of the most widely supported e-book formats. The files
+              you generate can be opened on Kindle, Kobo, Apple Books, Google
+              Play Books, PocketBook, Calibre and most other e-readers, tablets
+              and phones.
+            </p>
+          </section>
+
+          <section>
+            <h2>Frequently asked questions</h2>
+
+            <h3>Is Web page to EPUB free?</h3>
+            <p>
+              Yes. Both the online converter and the browser extensions are
+              completely free, with no account and no usage limits. Keep in mind
+              that some websites block being downloaded through public proxies,
+              so a few pages might not convert online.
+            </p>
+
+            <h3>Is my data sent to a server?</h3>
+            <p>
+              The online converter first tries to download the page directly
+              from your browser. When that is not possible, it sends the page
+              address to a third-party proxy that downloads the content for you.
+              We cannot guarantee that these proxies do not store information
+              about the requests. If you do not want to send any information to
+              third parties, install the browser extension, which converts the
+              page entirely on your device.
+            </p>
+
+            <h3>Which devices and readers can open the EPUB?</h3>
+            <p>
+              EPUB is widely supported. You can open the generated files on
+              Kindle, Kobo, Apple Books, Google Play Books, PocketBook, Calibre
+              and most other e-readers, tablets and phones.
+            </p>
+
+            <h3>Why are some elements removed from the page?</h3>
+            <p>
+              Forms, videos, audios, frames, scripts and styles are removed so
+              the result is clean, lightweight and comfortable to read on
+              e-readers.
+            </p>
+
+            <h3>What is the difference between the website and the extension?</h3>
+            <p>
+              The website downloads the page for you, using a third-party proxy
+              when a direct download is not possible. The browser extension
+              converts the page you are currently viewing directly on your
+              device, so it works with pages behind a login and never shares the
+              page with a proxy.
+            </p>
+          </section>
         </div>
-      </footer>
+      </div>
     </div>
     <script>
       if ('serviceWorker' in navigator) {
