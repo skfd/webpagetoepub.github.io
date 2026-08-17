@@ -6,9 +6,9 @@ h1, .center {
   margin-top: 30px;
 }
 
-footer {
+.extensions {
   margin-top: 4rem;
-  margin-bottom: 2rem;
+  margin-bottom: 4rem !important;
 }
 
 .store-badges {
