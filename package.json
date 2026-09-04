@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Convert any webpage to an EPUB file",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "tsx --test test/*.test.ts",
     "build": "webpack",
     "dev": "concurrently -k -n build,serve -c blue,green \"nodemon --watch src --watch assets --ext ts,js,html,css,png,jpg,gif,ico,xml,webmanifest --exec \\\"npm run build\\\"\" \"http-server dist -c-1 -p 8080\""
   },
@@ -31,6 +31,7 @@
     "purgecss-webpack-plugin": "^8.0.0",
     "terser-webpack-plugin": "^5.4.0",
     "ts-loader": "^9.5.7",
+    "tsx": "^4.23.13",
     "typescript": "^4.9.4",
     "url-loader": "^4.1.1",
     "webpack": "^5.105.4",
