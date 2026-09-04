@@ -87,8 +87,14 @@ function enableButton() {
   downloadButton.disabled = false;
 }
 
+const DEFAULT_BASENAME = 'webpage';
+
+// Keeps letters and digits of any script (not only ASCII), so pages with
+// non-Latin titles don't end up downloaded as ".epub".
 function slug(title: string) {
-  return title.toLowerCase().replace(/[^a-z0-9\s]/g, '').replace(/\s+/g, '-');
+  const basename = title.toLowerCase().replace(/[^\p{L}\p{N}\s]/gu, '').trim().replace(/\s+/g, '-');
+
+  return basename || DEFAULT_BASENAME;
 }
 
 function updateProgressLength(maxValue: number) {
