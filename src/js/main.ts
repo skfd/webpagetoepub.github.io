@@ -89,10 +89,22 @@ function enableButton() {
 
 const DEFAULT_BASENAME = 'webpage';
 
-// Keeps letters and digits of any script (not only ASCII), so pages with
-// non-Latin titles don't end up downloaded as ".epub".
+// Matches everything that isn't a letter, a digit or whitespace, in any
+// script (not only ASCII), so pages with non-Latin titles don't end up
+// downloaded as ".epub". Built at runtime because a literal with Unicode
+// property escapes is a syntax error in browsers that don't support them,
+// which would prevent the whole script from loading; those keep the
+// ASCII-only behaviour.
+const NOT_SLUG_CHARS_REGEX = (() => {
+  try {
+    return new RegExp('[^\\p{L}\\p{N}\\s]', 'gu');
+  } catch (_) {
+    return /[^a-z0-9\s]/g;
+  }
+})();
+
 function slug(title: string) {
-  const basename = title.toLowerCase().replace(/[^\p{L}\p{N}\s]/gu, '').trim().replace(/\s+/g, '-');
+  const basename = title.toLowerCase().replace(NOT_SLUG_CHARS_REGEX, '').trim().replace(/\s+/g, '-');
 
   return basename || DEFAULT_BASENAME;
 }
