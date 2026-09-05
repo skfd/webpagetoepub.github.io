@@ -17,6 +17,12 @@ const XML_ENCODING_REGEX = /^\s*<\?xml\b[^>]*?encoding\s*=\s*["']([\w.:-]+)["']/
 const CONTENT_TYPE_CHARSET_REGEX = /;\s*charset\s*=\s*["']?\s*([\w.:-]+)/i;
 
 export default function decodeResponseText(response: Response): Promise<string> {
+  // Without TextDecoder the encoding can't be honoured; keep the previous
+  // behaviour (UTF-8) rather than failing the download.
+  if (typeof TextDecoder === 'undefined') {
+    return response.text();
+  }
+
   const headerCharset = charsetFromContentType(response.headers.get('content-type'));
 
   return response.arrayBuffer().then(buffer => decodeBytes(new Uint8Array(buffer), headerCharset));
@@ -46,8 +52,11 @@ export function decodeBytes(bytes: Uint8Array, headerCharset: string | null = nu
   }
 
   // Nothing decoded cleanly (invalid byte sequences). windows-1252 accepts
-  // every byte and is what browsers fall back to for undeclared pages.
-  return decodeWith(bytes, 'windows-1252', false);
+  // every byte and is what browsers fall back to for undeclared pages. A
+  // TextDecoder that only knows UTF-8 can't do that, so replace the bad bytes.
+  const fallback = tryDecodeWith(bytes, 'windows-1252', false);
+
+  return fallback !== null ? fallback : decodeWith(bytes, 'utf-8', false);
 }
 
 // Encodings to try, most trustworthy first: transport header, in-document
